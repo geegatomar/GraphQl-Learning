@@ -1,0 +1,46 @@
+type Query {
+  check: String!
+  user(id: ID!): User
+  users: [User]!
+  post(id: ID!): Post
+  comment(id: ID!): Comment
+}
+
+type Mutation {
+  createUser(id: String!, email: String!): User!
+  createPost(author: String!): Post!
+  followUser(followerId: ID!, followingId: ID!): User
+  unfollowUser(followerId: ID!, followingId: ID!): User
+  createComment(user: ID!, post: ID!, text: String!): Comment!
+  createLike(user: ID!, post: ID!): Like!
+  deletePost(id: ID!)
+}
+
+type User {
+  id: String!
+  email: String!
+  followers: [User]!
+  following: [User]!
+  uploadedPosts: [Post]!
+}
+
+type Post {
+  id: ID!
+  author: User!
+  imageUrl: String!
+  description: String!
+  dateCreation: String!
+}
+
+# type Like {
+#   id: ID!
+#   likedBy: User!
+#   onPost: Post!
+# }
+
+# type Comment {
+#   id: ID!
+#   author: User!
+#   onPost: Post!
+#   text: String!
+# }
